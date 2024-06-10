@@ -36,7 +36,7 @@ namespace Business.Concretes
             GetNotificationResponse response = _mapper.Map<GetNotificationResponse>(request);
             return response;
         }
-
+        
         public async Task<GetNotificationResponse> Delete(DeleteNotificationRequest request)
         {
             Notification Notification = await _notificationDal.GetAsync(predicate: c => c.Id == request.Id);
@@ -62,7 +62,16 @@ namespace Business.Concretes
             Paginate<GetListNotificationResponse> response = _mapper.Map<Paginate<GetListNotificationResponse>>(result);
             return response;
         }
-
+        public async Task<IPaginate<GetListNotificationResponse>> GetListUserId(PageRequest pageRequest, Guid id)
+        {
+            var result = await _notificationDal.GetListAsync(
+                 index: pageRequest.Index,
+                 size: pageRequest.Size,
+                 predicate: a => a.UserId == id
+                 );
+            Paginate<GetListNotificationResponse> response = _mapper.Map<Paginate<GetListNotificationResponse>>(result);
+            return response;
+        }
         public async Task<GetNotificationResponse> Update(UpdateNotificationRequest request)
         {
             var result = await _notificationDal.GetAsync(predicate: a => a.Id == request.Id);

@@ -16,14 +16,12 @@ namespace Business
     {
         public static IServiceCollection AddBusinessServices(this IServiceCollection services)
         {
-            services.AddScoped<IUserInformationService, UserInformationManager>();
             services.AddScoped<IUserService, UserManager>();
             services.AddScoped<INotificationService, NotificationManager>();
             services.AddScoped<ITokenHelper, JwtHelper>();
 
             services.AddScoped<UserBusinessRules>();
             services.AddScoped<NotificationBusinessRules>();
-            services.AddScoped<UserInformationBusinessRules>();
             services.AddScoped<AuthBusinessRules>();
 
             services.AddAutoMapper(Assembly.GetExecutingAssembly());

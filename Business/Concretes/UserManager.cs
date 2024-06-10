@@ -25,13 +25,10 @@ namespace Business.Concretes
 
 
 
-        //[ValidationAspect(typeof(UserRequestValidator))]
         public async Task<GetUserResponse> Add(CreateUserRequest request)
         {
             User user = _mapper.Map<User>(request);
 
-            // Böyle bir kullanıcı var mı?
-            //await _businessRules.CheckIfUserExist(user);
 
             await _userDal.AddAsync(user);
             GetUserResponse response = _mapper.Map<GetUserResponse>(user);

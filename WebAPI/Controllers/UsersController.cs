@@ -17,9 +17,15 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("get")]
-        public async Task<IActionResult> Get([FromQuery] Guid Id)
+        public async Task<IActionResult> Get([FromQuery] Guid id)
         {
-            var result = await _userService.Get(Id);
+            var result = await _userService.Get(id);
+            return Ok(result);
+        }
+        [HttpGet("getbyusername")]
+        public async Task<IActionResult> GetByUserName([FromQuery] string userName)
+        {
+            var result = await _userService.GetByUserName(userName);
             return Ok(result);
         }
 

@@ -14,7 +14,6 @@ namespace DataAccess.Context
     public class NotificationSystemContext : DbContext
     {
         public DbSet<Notification> Notifications { get; set; }
-        public DbSet<UserInformation> UserInformations { get; set; }
 
         protected IConfiguration Configuration { get; set; }
 

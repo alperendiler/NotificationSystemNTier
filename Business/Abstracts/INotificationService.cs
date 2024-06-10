@@ -16,6 +16,7 @@ namespace Business.Abstracts
         Task<GetNotificationResponse> Update(UpdateNotificationRequest updateNotificationRequest);
         Task<GetNotificationResponse> Delete(DeleteNotificationRequest deleteNotificationRequest);
         Task<IPaginate<GetListNotificationResponse>> GetList(PageRequest pageRequest);
+        Task<IPaginate<GetListNotificationResponse>> GetListUserId(PageRequest pageRequest, Guid id);
         Task<GetNotificationResponse> Get(Guid id);
     }
 }

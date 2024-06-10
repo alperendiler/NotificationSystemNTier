@@ -30,6 +30,13 @@ namespace WebAPI.Controllers
             return Ok(result);
 
         }
+        [HttpGet("getlistuserid")]
+        public async Task<IActionResult> GetListUserId([FromQuery] PageRequest pageRequest, Guid id)
+        {
+            var result = await _notificationService.GetListUserId(pageRequest,  id);
+            return Ok(result);
+
+        }
         [HttpPost("add")]
         public async Task<IActionResult> Add([FromBody] CreateNotificationRequest createnotificationRequest)
         {
@@ -37,7 +44,7 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
         [HttpPut("update")]
-        public async Task<IActionResult> Update([FromQuery] UpdateNotificationRequest updatenotificationRequest)
+        public async Task<IActionResult> Update([FromBody] UpdateNotificationRequest updatenotificationRequest)
         {
             var result = await _notificationService.Update(updatenotificationRequest);
             return Ok(result);

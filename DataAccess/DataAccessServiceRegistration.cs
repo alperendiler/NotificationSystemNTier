@@ -15,7 +15,6 @@ namespace DataAccess
 
             services.AddScoped<IUserDal, EfUserDal>();
             services.AddScoped<INotificationDal, EfNotificationDal>();
-            services.AddScoped<IUserInformationDal, EfUserInformationIDal>();
 
 
             return services;
