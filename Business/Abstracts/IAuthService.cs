@@ -1,7 +1,7 @@
 ﻿using Business.Dtos.Auth.Requests;
 using Business.Dtos.Auth.Responses;
-using Core.Entities.Concrete;
 using Core.Utilities.Security.Jwt;
+using Entities.Concretes;
 
 namespace Business.Abstract
 {
@@ -11,5 +11,6 @@ namespace Business.Abstract
         Task<User> Login(LoginAuthRequest loginAuthRequest);
         Task UserExists(string email);
         Task<AccessToken> CreateAccessToken(User user);
+
     }
 }

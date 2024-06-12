@@ -2,6 +2,7 @@
 using Core.Entities.Concrete;
 using DataAccess.Abstracts;
 using DataAccess.Context;
+using Entities.Concretes;
 
 namespace DataAccess.Concretes
 {
@@ -25,6 +26,7 @@ namespace DataAccess.Concretes
 
 
         }
+
     }
 
      

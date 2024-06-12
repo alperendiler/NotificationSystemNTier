@@ -2,7 +2,9 @@
 using Business.Dtos.Users.Responses;
 using Core.Business.Requests;
 using Core.DataAccess.Paging;
-using Core.Entities.Concrete;
+using Entities.Concretes;
+using Microsoft.EntityFrameworkCore.Query;
+using System.Linq.Expressions;
 
 namespace Business.Abstracts
 {
@@ -16,5 +18,6 @@ namespace Business.Abstracts
         Task<GetUserResponse> GetByMail(string email);
         Task<GetUserResponse> GetByUserName(string userName);
         Task<List<OperationClaim>> GetClaims(User user);
+
     }
 }

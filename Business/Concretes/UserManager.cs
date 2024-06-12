@@ -7,11 +7,15 @@ using Core.Business.Requests;
 using Core.DataAccess.Paging;
 using Core.Entities.Concrete;
 using DataAccess.Abstracts;
+using Entities.Concretes;
+using Microsoft.EntityFrameworkCore.Query;
+using System.Linq.Expressions;
 
 namespace Business.Concretes
 {
     public class UserManager : IUserService
     {
+
         IUserDal _userDal;
         IMapper _mapper;
         UserBusinessRules _businessRules;
@@ -101,4 +105,5 @@ namespace Business.Concretes
             return response;
         }
     }
-}
+        
+    }

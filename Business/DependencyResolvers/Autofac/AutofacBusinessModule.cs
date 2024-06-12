@@ -1,7 +1,10 @@
 ﻿using Autofac;
 using Autofac.Extras.DynamicProxy;
+using Business.Dtos.Notification.Responses;
 using Castle.DynamicProxy;
+using Core.CrossCuttingConcerns.SingalR;
 using Core.Utilities.Interceptors;
+using Microsoft.AspNetCore.SignalR;
 
 namespace Business.DependencyResolvers.Autofac
 {

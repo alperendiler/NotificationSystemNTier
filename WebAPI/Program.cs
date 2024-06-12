@@ -2,7 +2,9 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Business;
 using Business.DependencyResolvers.Autofac;
+using Business.Dtos.Notification.Responses;
 using Core.CrossCuttingConcerns.Exceptions.Extentions;
+using Core.CrossCuttingConcerns.SingalR;
 using Core.DependencyResolvers;
 using Core.Extentions;
 using Core.Utilities.IoC;
@@ -51,12 +53,13 @@ builder.Services.AddSwaggerGen();
 
 
 var app = builder.Build();
-
+app.UseRouting();
 app.UseCors(builder =>
 {
-    builder.AllowAnyOrigin()
+    builder.WithOrigins("http://localhost:3000")
+           .AllowAnyMethod()
            .AllowAnyHeader()
-           .AllowAnyMethod();
+           .AllowCredentials();
 });
 
 
@@ -69,7 +72,11 @@ if (app.Environment.IsDevelopment())
 
 app.UseAuthentication();
 app.UseAuthorization();
-
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+    endpoints.MapHub<SýngalRHub<GetNotificationResponse>>("/notificationHub");
+});
 app.MapControllers();
 app.ConfigureCustomExceptionMiddleware();
 app.Run();

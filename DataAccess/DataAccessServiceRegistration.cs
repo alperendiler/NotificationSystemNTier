@@ -15,7 +15,12 @@ namespace DataAccess
 
             services.AddScoped<IUserDal, EfUserDal>();
             services.AddScoped<INotificationDal, EfNotificationDal>();
+            services.AddScoped<IUserOperationClaimDal, EfUserOperationClaimDal>();
+            services.AddScoped<IOtpAuthenticatorDal, EfOtpAuthenticatorDal>();
+            services.AddScoped<IOperationClaimDal, EfOperationClaimDal>();
+            services.AddScoped<IRefreshTokenDal, EfRefreshTokenDal>();
 
+            services.AddScoped<IUserOperationClaimDal, EfUserOperationClaimDal>();
 
             return services;
         }

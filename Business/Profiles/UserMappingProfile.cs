@@ -5,6 +5,7 @@ using Business.Dtos.Users.Requests;
 using Business.Dtos.Users.Responses;
 using Core.DataAccess.Paging;
 using Core.Entities.Concrete;
+using Entities.Concretes;
 
 namespace Business.Profiles
 {

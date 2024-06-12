@@ -18,6 +18,8 @@ namespace DataAccess.Context
         protected IConfiguration Configuration { get; set; }
 
         public DbSet<OperationClaim> OperationClaims { get; set; }
+        public DbSet<OtpAuthenticator> OtpAuthenticators { get; set; }
+        public DbSet<RefreshToken> RefreshTokens { get; set; }
 
         public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
         public DbSet<User> Users { get; set; }
