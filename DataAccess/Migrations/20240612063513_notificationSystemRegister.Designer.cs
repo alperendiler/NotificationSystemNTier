@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(NotificationSystemContext))]
-    [Migration("20240611234534_notificationSystem")]
-    partial class notificationSystem
+    [Migration("20240612063513_notificationSystemRegister")]
+    partial class notificationSystemRegister
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -98,139 +98,139 @@ namespace DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 6, 11, 23, 45, 30, 816, DateTimeKind.Utc).AddTicks(1282),
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Admin"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 6, 11, 23, 45, 30, 816, DateTimeKind.Utc).AddTicks(1291),
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Auth.Admin"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2024, 6, 11, 23, 45, 30, 816, DateTimeKind.Utc).AddTicks(1292),
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Auth.Read"
                         },
                         new
                         {
                             Id = 4,
-                            CreatedDate = new DateTime(2024, 6, 11, 23, 45, 30, 816, DateTimeKind.Utc).AddTicks(1292),
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Auth.Write"
                         },
                         new
                         {
                             Id = 5,
-                            CreatedDate = new DateTime(2024, 6, 11, 23, 45, 30, 816, DateTimeKind.Utc).AddTicks(1293),
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Auth.RevokeToken"
                         },
                         new
                         {
                             Id = 6,
-                            CreatedDate = new DateTime(2024, 6, 11, 23, 45, 30, 816, DateTimeKind.Utc).AddTicks(1294),
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "OperationClaims.Admin"
                         },
                         new
                         {
                             Id = 7,
-                            CreatedDate = new DateTime(2024, 6, 11, 23, 45, 30, 816, DateTimeKind.Utc).AddTicks(1295),
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "OperationClaims.Read"
                         },
                         new
                         {
                             Id = 8,
-                            CreatedDate = new DateTime(2024, 6, 11, 23, 45, 30, 816, DateTimeKind.Utc).AddTicks(1296),
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "OperationClaims.Write"
                         },
                         new
                         {
                             Id = 9,
-                            CreatedDate = new DateTime(2024, 6, 11, 23, 45, 30, 816, DateTimeKind.Utc).AddTicks(1296),
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "OperationClaims.Create"
                         },
                         new
                         {
                             Id = 10,
-                            CreatedDate = new DateTime(2024, 6, 11, 23, 45, 30, 816, DateTimeKind.Utc).AddTicks(1297),
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "OperationClaims.Update"
                         },
                         new
                         {
                             Id = 11,
-                            CreatedDate = new DateTime(2024, 6, 11, 23, 45, 30, 816, DateTimeKind.Utc).AddTicks(1298),
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "OperationClaims.Delete"
                         },
                         new
                         {
                             Id = 12,
-                            CreatedDate = new DateTime(2024, 6, 11, 23, 45, 30, 816, DateTimeKind.Utc).AddTicks(1299),
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "UserOperationClaims.Admin"
                         },
                         new
                         {
                             Id = 13,
-                            CreatedDate = new DateTime(2024, 6, 11, 23, 45, 30, 816, DateTimeKind.Utc).AddTicks(1299),
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "UserOperationClaims.Read"
                         },
                         new
                         {
                             Id = 14,
-                            CreatedDate = new DateTime(2024, 6, 11, 23, 45, 30, 816, DateTimeKind.Utc).AddTicks(1300),
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "UserOperationClaims.Write"
                         },
                         new
                         {
                             Id = 15,
-                            CreatedDate = new DateTime(2024, 6, 11, 23, 45, 30, 816, DateTimeKind.Utc).AddTicks(1301),
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "UserOperationClaims.Create"
                         },
                         new
                         {
                             Id = 16,
-                            CreatedDate = new DateTime(2024, 6, 11, 23, 45, 30, 816, DateTimeKind.Utc).AddTicks(1302),
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "UserOperationClaims.Update"
                         },
                         new
                         {
                             Id = 17,
-                            CreatedDate = new DateTime(2024, 6, 11, 23, 45, 30, 816, DateTimeKind.Utc).AddTicks(1303),
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "UserOperationClaims.Delete"
                         },
                         new
                         {
                             Id = 18,
-                            CreatedDate = new DateTime(2024, 6, 11, 23, 45, 30, 816, DateTimeKind.Utc).AddTicks(1303),
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Users.Admin"
                         },
                         new
                         {
                             Id = 19,
-                            CreatedDate = new DateTime(2024, 6, 11, 23, 45, 30, 816, DateTimeKind.Utc).AddTicks(1304),
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Users.Read"
                         },
                         new
                         {
                             Id = 20,
-                            CreatedDate = new DateTime(2024, 6, 11, 23, 45, 30, 816, DateTimeKind.Utc).AddTicks(1305),
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Users.Write"
                         },
                         new
                         {
                             Id = 21,
-                            CreatedDate = new DateTime(2024, 6, 11, 23, 45, 30, 816, DateTimeKind.Utc).AddTicks(1305),
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Users.Create"
                         },
                         new
                         {
                             Id = 22,
-                            CreatedDate = new DateTime(2024, 6, 11, 23, 45, 30, 816, DateTimeKind.Utc).AddTicks(1306),
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Users.Update"
                         },
                         new
                         {
                             Id = 23,
-                            CreatedDate = new DateTime(2024, 6, 11, 23, 45, 30, 816, DateTimeKind.Utc).AddTicks(1307),
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Users.Delete"
                         });
                 });
@@ -390,13 +390,13 @@ namespace DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("28bf94e6-1340-40a2-b18b-be960c40c9bf"),
+                            Id = new Guid("731d64bf-0abb-419c-a6de-aedd666fcab9"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "alperendiler1@gmail.com",
                             FirstName = "Alperen",
                             LastName = "Diler",
-                            PasswordHash = new byte[] { 54, 146, 130, 162, 65, 183, 249, 188, 176, 137, 127, 106, 123, 42, 45, 161, 141, 37, 180, 92, 18, 216, 100, 86, 142, 237, 250, 10, 99, 127, 115, 88, 72, 113, 108, 44, 140, 130, 26, 42, 121, 141, 221, 182, 208, 6, 70, 129, 194, 157, 10, 81, 24, 13, 71, 143, 4, 181, 4, 109, 115, 69, 110, 184 },
-                            PasswordSalt = new byte[] { 46, 63, 170, 231, 0, 91, 92, 70, 12, 244, 93, 133, 173, 35, 23, 43, 44, 188, 19, 200, 169, 14, 27, 116, 63, 221, 150, 228, 223, 238, 37, 112, 82, 160, 24, 236, 93, 115, 173, 77, 198, 77, 190, 224, 130, 135, 118, 12, 80, 146, 11, 191, 137, 218, 184, 212, 60, 222, 251, 203, 245, 216, 234, 253, 175, 244, 57, 164, 178, 251, 192, 17, 80, 39, 110, 212, 47, 222, 103, 220, 131, 89, 140, 209, 116, 160, 238, 0, 174, 192, 59, 53, 138, 42, 173, 44, 101, 101, 135, 110, 53, 147, 234, 106, 166, 233, 180, 148, 60, 178, 207, 3, 226, 131, 37, 158, 223, 41, 118, 184, 70, 158, 64, 45, 54, 23, 61, 165 },
+                            PasswordHash = new byte[] { 156, 53, 216, 127, 254, 243, 54, 152, 116, 116, 68, 139, 245, 21, 65, 112, 211, 93, 16, 63, 221, 187, 188, 91, 51, 249, 101, 63, 209, 101, 217, 83, 23, 61, 248, 21, 141, 199, 54, 198, 182, 180, 50, 58, 131, 34, 47, 15, 255, 194, 149, 27, 99, 230, 128, 106, 86, 171, 237, 218, 33, 41, 136, 90 },
+                            PasswordSalt = new byte[] { 10, 43, 49, 13, 13, 101, 72, 31, 203, 119, 214, 208, 229, 96, 123, 52, 196, 147, 170, 107, 68, 40, 174, 13, 55, 21, 222, 70, 136, 8, 192, 167, 200, 161, 28, 62, 52, 185, 46, 45, 174, 170, 218, 1, 42, 247, 4, 221, 76, 98, 39, 28, 181, 170, 208, 245, 173, 226, 194, 184, 15, 108, 221, 88, 110, 58, 3, 170, 157, 89, 194, 127, 213, 197, 74, 96, 65, 165, 159, 212, 89, 202, 236, 175, 2, 160, 163, 146, 203, 192, 249, 154, 2, 32, 100, 23, 48, 59, 53, 55, 131, 2, 219, 251, 49, 12, 5, 20, 165, 142, 101, 141, 162, 62, 105, 135, 16, 200, 233, 99, 18, 206, 34, 138, 27, 155, 93, 13 },
                             UserName = "alperen"
                         });
                 });
@@ -444,10 +444,10 @@ namespace DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("cf7720ee-ffcf-47c5-aa6c-63b2afe35e2e"),
-                            CreatedDate = new DateTime(2024, 6, 11, 23, 45, 30, 818, DateTimeKind.Utc).AddTicks(2472),
+                            Id = new Guid("5437f74b-4604-4acc-a582-e7fc71e33d35"),
+                            CreatedDate = new DateTime(2024, 6, 12, 6, 35, 13, 762, DateTimeKind.Utc).AddTicks(3774),
                             OperationClaimId = 1,
-                            UserId = new Guid("28bf94e6-1340-40a2-b18b-be960c40c9bf")
+                            UserId = new Guid("731d64bf-0abb-419c-a6de-aedd666fcab9")
                         });
                 });
 

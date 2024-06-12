@@ -37,6 +37,7 @@ namespace Core.Utilities.Security.Jwt
             return new AccessToken() { Token = token, ExpirationDate = accessTokenExpiration };
         }
 
+
         public RefreshToken< TUserId> CreateRefreshToken(User<TUserId> user, string ipAddress)
         {
             return new RefreshToken< TUserId>()

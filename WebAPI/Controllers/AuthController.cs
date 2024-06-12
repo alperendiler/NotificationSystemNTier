@@ -31,7 +31,7 @@ namespace WebAPI.Controllers
             var userToLogin = await _authService.Login(request);
 
 
-            var result = _authService.CreateAccessToken(userToLogin);
+            var result = await _authService.CreateAccessToken(userToLogin);
             return Ok(result);
         }
 
@@ -41,8 +41,15 @@ namespace WebAPI.Controllers
             await _authService.UserExists(request.UserName);
 
 
-            var registerResult = await _authService.Register(request, request.Password);
-            var result = _authService.CreateAccessToken(registerResult);
+            var createdUser = await _authService.Register(request, request.Password);
+            var createdAccessToken =  await _authService.CreateAccessToken(createdUser);
+            var createdRefreshToken = await _authService.CreateRefreshToken(
+                createdUser,
+                request.IpAddress
+            );
+            var addedRefreshToken = await _authService.AddRefreshToken(createdRefreshToken);
+
+            var registeredResponse = new() { AccessToken = createdAccessToken, RefreshToken = addedRefreshToken };
             if (result != null)
             {
                 return Ok(result);

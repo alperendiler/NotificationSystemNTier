@@ -11,6 +11,9 @@ namespace Business.Abstract
         Task<User> Login(LoginAuthRequest loginAuthRequest);
         Task UserExists(string email);
         Task<AccessToken> CreateAccessToken(User user);
+        Task<RefreshToken> CreateRefreshToken(User user, string ipAddress);
+         Task<RefreshToken> AddRefreshToken(RefreshToken refreshToken);
+
 
     }
 }

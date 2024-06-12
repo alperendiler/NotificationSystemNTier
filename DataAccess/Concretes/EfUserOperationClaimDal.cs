@@ -20,11 +20,13 @@ namespace DataAccess.Concretes
 
         public async Task<IList<OperationClaim>> GetOperationClaimsByUserIdAsync(Guid userId)
         {
-            return await Query()
-                .Include(p => p.OperationClaim)
-                .Where(p => p.UserId == userId)
-                .Select(p => new OperationClaim { Id = p.OperationClaimId, Name = p.OperationClaim.Name })
-                .ToListAsync();
+            List<OperationClaim> operationClaims = await Query()
+            .AsNoTracking()
+            .Where(p => p.UserId.Equals(userId))
+            .Select(p => new OperationClaim { Id = p.OperationClaimId, Name = p.OperationClaim.Name })
+            .ToListAsync();
+            return operationClaims;
+
         }
     }
 }

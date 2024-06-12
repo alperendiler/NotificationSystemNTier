@@ -22,20 +22,23 @@ namespace Business.Concrete
 {
     public class AuthManager : IAuthService
     {
-        
-            private IUserService _userService;
+
+        private IUserService _userService;
             private ITokenHelper<Guid, int> _tokenHelper;
             private IMapper _mapper;
-             private readonly IUserOperationClaimDal _userOperationClaimRepository;
+            IUserOperationClaimDal _userOperationClaimRepository;
+            private IRefreshTokenDal _refreshTokenRepository;
 
-        public AuthManager(IUserService userService, ITokenHelper<Guid, int> tokenHelper, IMapper mapper)
-            {
-                _userService = userService;
-                _tokenHelper = tokenHelper;
-                _mapper = mapper;
-            }
+        public AuthManager(IUserService userService, ITokenHelper<Guid, int> tokenHelper, IMapper mapper, IUserOperationClaimDal userOperationClaimRepository, IRefreshTokenDal refreshTokenRepository)
+        {
+            _userService = userService;
+            _tokenHelper = tokenHelper;
+            _mapper = mapper;
+            _userOperationClaimRepository = userOperationClaimRepository;
+            _refreshTokenRepository = refreshTokenRepository;
+        }
 
-            [ValidationAspect(typeof(UserRequestValidator))]
+        [ValidationAspect(typeof(UserRequestValidator))]
 
             public async Task<User> Register(RegisterAuthRequest request, string password)
             {
@@ -93,14 +96,31 @@ namespace Business.Concrete
 
         public async Task<AccessToken> CreateAccessToken(User user)
         {
+         
 
-            IList<OperationClaim<int>> operationClaims = (await _userOperationClaimRepository.GetOperationClaimsByUserIdAsync(user.Id))
-                .Select(op => new OperationClaim<int> { Id = op.Id, Name = op.Name })
-                .ToList();
-
-            AccessToken accessToken = _tokenHelper.CreateToken(user, operationClaims.ToImmutableList());
+            IList<OperationClaim> operationClaims = await _userOperationClaimRepository.GetOperationClaimsByUserIdAsync(user.Id);
+            AccessToken accessToken = _tokenHelper.CreateToken(
+                user,
+                operationClaims.Select(op => (OperationClaim<int>)op).ToImmutableList()
+            );
             return accessToken;
         }
+
+        public Task<RefreshToken> CreateRefreshToken(User user, string ipAddress)
+        {
+            RefreshToken<Guid> coreRefreshToken = _tokenHelper.CreateRefreshToken(
+            user,
+            ipAddress
+        );
+            RefreshToken refreshToken = _mapper.Map<RefreshToken>(coreRefreshToken);
+            return Task.FromResult(refreshToken);
+        }
+
+   public async Task<RefreshToken> AddRefreshToken(RefreshToken refreshToken)
+{
+    RefreshToken addedRefreshToken = await _refreshTokenRepository.AddAsync(refreshToken);
+    return addedRefreshToken;
+}
 
     }
     }
