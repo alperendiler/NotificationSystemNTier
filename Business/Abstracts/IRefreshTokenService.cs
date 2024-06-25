@@ -10,5 +10,6 @@ namespace Business.Abstracts
     public interface IRefreshTokenService
     {
         Task<List<RefreshToken>> GetOldRefreshTokensAsync(Guid userId, int refreshTokenTTL);
+        Task<RefreshToken> AddAsync(RefreshToken refreshToken);
     }
 }

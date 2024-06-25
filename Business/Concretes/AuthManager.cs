@@ -26,20 +26,19 @@ namespace Business.Concrete
         private IUserService _userService;
             private ITokenHelper<Guid, int> _tokenHelper;
             private IMapper _mapper;
-            IUserOperationClaimDal _userOperationClaimRepository;
-            private IRefreshTokenDal _refreshTokenRepository;
+            IUserOperationClaimService _userOperationClaimService;
+            private IRefreshTokenService _refreshTokenService;
 
-        public AuthManager(IUserService userService, ITokenHelper<Guid, int> tokenHelper, IMapper mapper, IUserOperationClaimDal userOperationClaimRepository, IRefreshTokenDal refreshTokenRepository)
+        public AuthManager(IUserService userService, ITokenHelper<Guid, int> tokenHelper, IMapper mapper, IUserOperationClaimService userOperationClaimService, IRefreshTokenService refreshTokenService)
         {
             _userService = userService;
             _tokenHelper = tokenHelper;
             _mapper = mapper;
-            _userOperationClaimRepository = userOperationClaimRepository;
-            _refreshTokenRepository = refreshTokenRepository;
+            _userOperationClaimService = userOperationClaimService;
+            _refreshTokenService = refreshTokenService;
         }
 
-        [ValidationAspect(typeof(UserRequestValidator))]
-
+             [ValidationAspect(typeof(UserRequestValidator))]
             public async Task<User> Register(RegisterAuthRequest request, string password)
             {
                 User user = _mapper.Map<User>(request);
@@ -63,22 +62,14 @@ namespace Business.Concrete
             public async Task<User> Login(LoginAuthRequest request)
             {
                 User user = _mapper.Map<User>(request);
-                var loginuser = await _userService.GetByUserName(user.UserName);
+                var loginUser = await _userService.GetByUserName(user.UserName);
 
-                if (loginuser == null)
-                {
+            if (loginUser == null || !HashingHelper.VerifyPasswordHash(request.Password, user.PasswordHash, user.PasswordSalt))
+            {
+                throw new BusinessException(Messages.UserNameOrPasswordIncorrect);
+            }
 
-                    throw new BusinessException(Messages.MailOrPasswordIncorrect);
-
-
-                }
-
-                if (!HashingHelper.VerifyPasswordHash(request.Password, loginuser.PasswordHash, loginuser.PasswordSalt))
-                {
-                    throw new BusinessException(Messages.MailOrPasswordIncorrect);
-                }
-
-                var userResponse = _mapper.Map<User>(loginuser);
+            var userResponse = _mapper.Map<User>(loginUser);
 
                 return userResponse;
             }
@@ -93,13 +84,29 @@ namespace Business.Concrete
                 }
                 return Task.CompletedTask;
             }
+        public async Task<RegisteredResponse> HandleRegister(RegisterAuthRequest request)
+        {
+            await UserExists(request.UserName);
 
+            var createdUser = await Register(request, request.Password);
+            var createdAccessToken = await CreateAccessToken(createdUser);
+            var createdRefreshToken = await CreateRefreshToken(createdUser, request.IpAddress);
+            var addedRefreshToken = await AddRefreshToken(createdRefreshToken);
+
+            RegisteredResponse registeredResponse = new()
+            {
+                AccessToken = createdAccessToken,
+                RefreshToken = _mapper.Map<Entities.Concretes.RefreshToken>(addedRefreshToken) 
+            };
+
+            return registeredResponse;
+        }
         public async Task<AccessToken> CreateAccessToken(User user)
         {
          
 
-            IList<OperationClaim> operationClaims = await _userOperationClaimRepository.GetOperationClaimsByUserIdAsync(user.Id);
-            AccessToken accessToken = _tokenHelper.CreateToken(
+            IList<OperationClaim> operationClaims = await _userOperationClaimService.GetOperationClaimsByUserIdAsync(user.Id);
+            Core.Utilities.Security.Jwt.AccessToken accessToken = _tokenHelper.CreateToken(
                 user,
                 operationClaims.Select(op => (OperationClaim<int>)op).ToImmutableList()
             );
@@ -118,10 +125,10 @@ namespace Business.Concrete
 
    public async Task<RefreshToken> AddRefreshToken(RefreshToken refreshToken)
 {
-    RefreshToken addedRefreshToken = await _refreshTokenRepository.AddAsync(refreshToken);
+    RefreshToken addedRefreshToken = await _refreshTokenService.AddAsync(refreshToken);
     return addedRefreshToken;
 }
-
+      
     }
     }
     

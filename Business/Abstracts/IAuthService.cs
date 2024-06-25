@@ -13,6 +13,7 @@ namespace Business.Abstract
         Task<AccessToken> CreateAccessToken(User user);
         Task<RefreshToken> CreateRefreshToken(User user, string ipAddress);
          Task<RefreshToken> AddRefreshToken(RefreshToken refreshToken);
+        Task<RegisteredResponse> HandleRegister(RegisterAuthRequest request);
 
 
     }

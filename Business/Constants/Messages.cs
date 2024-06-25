@@ -12,6 +12,7 @@ namespace Business.Constants
         public static string? UserMailAlreadyExists = "Böyle bir mail sisteme kayıtlıdır";
         public static string UserNotBeExist = "Kullanıcı mevcut değil";
         public static string MailOrPasswordIncorrect = "E-Posta veya şifre geçersiz";
+        public static string UserNameOrPasswordIncorrect = "Kullanıcı adı veya şifre geçersiz";
         public static string? UserAlreadyExists = "Böyle bir kullanıcı mevcut";
         public static string MustContainUpperLowerChar = "Şifre en az bir büyük harf, bir küçük harf, bir rakam içermeli";
         public static string MustFilling = "*Doldurulması zorunlu alan";

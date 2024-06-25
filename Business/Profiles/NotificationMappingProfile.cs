@@ -13,7 +13,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Business.Profiles
 {
-    internal class NotificationMappingProfile : Profile
+    public class NotificationMappingProfile : Profile
     {
         public NotificationMappingProfile()
         {

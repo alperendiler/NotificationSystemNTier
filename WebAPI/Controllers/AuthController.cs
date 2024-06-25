@@ -41,22 +41,9 @@ namespace WebAPI.Controllers
             await _authService.UserExists(request.UserName);
 
 
-            var createdUser = await _authService.Register(request, request.Password);
-            var createdAccessToken =  await _authService.CreateAccessToken(createdUser);
-            var createdRefreshToken = await _authService.CreateRefreshToken(
-                createdUser,
-                request.IpAddress
-            );
-            var addedRefreshToken = await _authService.AddRefreshToken(createdRefreshToken);
+           var result = await _authService.HandleRegister(request);
 
-            var registeredResponse = new() { AccessToken = createdAccessToken, RefreshToken = addedRefreshToken };
-            if (result != null)
-            {
-                return Ok(result);
-            }
-
-            //return BadRequest(result.Message);
-            return Ok(registerResult);
+            return Ok(result);
         }
      
 
